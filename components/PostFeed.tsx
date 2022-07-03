@@ -39,9 +39,7 @@ function PostItem({ post, admin = false }: { post: Post; admin: boolean }) {
           </a>
         </Link>
         <Link href={`/${post.username}/${post.slug}`}>
-          <h2 className="card-title">
-            <a>{post.content}</a>
-          </h2>
+          <a className="card-title">{post.title}</a>
         </Link>
         <footer className="card-actions">
           <span>

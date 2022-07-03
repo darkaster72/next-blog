@@ -1,10 +1,16 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { signInWithPopup } from "firebase/auth";
+import { User } from "./context";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,4 +36,10 @@ export const storage = getStorage(app);
 
 export const signInWithGoogle = async () => {
   return await signInWithPopup(auth, provider);
+};
+
+export const getUserWithUsername = async (username: string) => {
+  const userRef = collection(db, "users");
+  const q = query(userRef, where("username", "==", username), limit(1));
+  return (await getDocs(q)).docs[0];
 };

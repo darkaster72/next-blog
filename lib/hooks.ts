@@ -11,9 +11,9 @@ export function useUserData() {
     let unsubscribe;
 
     if (user) {
-      unsubscribe = onSnapshot(doc(db, "users", user.uid), (snap) =>
-        setUsername(snap.data()?.username)
-      );
+      unsubscribe = onSnapshot(doc(db, "users", user.uid), (snap) => {
+        setUsername(snap.data()?.username);
+      });
     } else {
       setUsername(null);
     }

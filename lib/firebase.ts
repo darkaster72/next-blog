@@ -7,6 +7,7 @@ import {
   getFirestore,
   limit,
   query,
+  Timestamp,
   where,
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
@@ -33,6 +34,7 @@ const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const fromMillis = Timestamp.fromMillis;
 
 export const signInWithGoogle = async () => {
   return await signInWithPopup(auth, provider);

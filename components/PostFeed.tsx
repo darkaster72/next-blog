@@ -31,23 +31,25 @@ function PostItem({ post, admin = false }: { post: Post; admin: boolean }) {
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
   return (
-    <div className="card">
-      <Link href={`/${post.username}`}>
-        <a>
-          <strong>By @{post.username}</strong>
-        </a>
-      </Link>
-      <Link href={`/${post.username}/${post.slug}`}>
-        <h2>
-          <a>{post.content}</a>
-        </h2>
-      </Link>
-      <footer>
-        <span>
-          {wordCount} words. {minutesToRead} min read
-        </span>
-        <span>❤️ {post.heartCount}</span>
-      </footer>
+    <div className="card shadow-xl bg-base-100 card-compact card-bordered">
+      <div className="card-body">
+        <Link href={`/${post.username}`}>
+          <a>
+            <strong>By @{post.username}</strong>
+          </a>
+        </Link>
+        <Link href={`/${post.username}/${post.slug}`}>
+          <h2 className="card-title">
+            <a>{post.content}</a>
+          </h2>
+        </Link>
+        <footer className="card-actions">
+          <span>
+            {wordCount} words. {minutesToRead} min read
+          </span>
+          <span>❤️ {post.heartCount}</span>
+        </footer>
+      </div>
     </div>
   );
 }

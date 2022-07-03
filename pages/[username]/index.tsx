@@ -28,7 +28,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       limit(5)
     );
 
-    posts = await (await getDocs(postQuery)).docs.map(jsonToPost);
+    posts = (await getDocs(postQuery)).docs.map((doc) =>
+      jsonToPost(doc.data())
+    );
   }
 
   return { props: { user, posts } };
@@ -43,11 +45,11 @@ const UserPage: NextPage<{ user: User; posts: Post[] }> = ({ user, posts }) => {
   );
 };
 
-function jsonToPost(post: DocumentData): Post {
+export function jsonToPost(post: DocumentData): Post {
   return {
     ...post,
-    createdAt: post.createdAt.toMillis(),
-    updatedAt: post.udpatedAt.toMillis(),
+    createdAt: post.createdAt?.toMillis(),
+    updatedAt: post.updatedAt?.toMillis(),
   } as Post;
 }
 

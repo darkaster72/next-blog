@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 const UserPage: NextPage<{ user: User; posts: Post[] }> = ({ user, posts }) => {
   return (
-    <div className="container px-6 py-4">
+    <div className="container flex flex-col gap-4 px-6 py-4">
       {user && <UserProfile user={user} />}
       <PostFeed posts={posts} />
     </div>

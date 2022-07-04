@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import Link from "next/link";
 
 export interface Post {
@@ -7,8 +8,8 @@ export interface Post {
   published: boolean;
   heartCount: number;
   title: string;
-  createdAt: number;
-  updatedAt: number;
+  createdAt: number | Timestamp;
+  updatedAt: number | Timestamp;
 }
 
 type PostFeedType = {

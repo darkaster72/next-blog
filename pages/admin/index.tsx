@@ -1,7 +1,12 @@
 import type { NextPage } from "next";
+import AuthCheck from "../../components/AuthCheck";
 
-const AdminPage: NextPage = () => {
-  return <div className="container px-6 py-4">Admin Page</div>;
+const AdminPostsPage: NextPage = () => {
+  return (
+    <main className="container px-6 py-4">
+      <AuthCheck></AuthCheck>
+    </main>
+  );
 };
 
-export default AdminPage;
+export default AdminPostsPage;

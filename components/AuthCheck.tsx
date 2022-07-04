@@ -16,7 +16,7 @@ export default function AuthCheck(props: AppProps) {
         ? props.children
         : props.fallback || (
             <Link href="/enter">
-              <button className="btn ">You must sign in</button>
+              <button className="btn">You must sign in</button>
             </Link>
           )}
     </>

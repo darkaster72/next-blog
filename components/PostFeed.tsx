@@ -1,15 +1,16 @@
-import { Timestamp } from "firebase/firestore";
+import { FieldValue, Timestamp } from "firebase/firestore";
 import Link from "next/link";
 
 export interface Post {
+  uid: string;
   username: string;
   slug: string;
   content: string;
   published: boolean;
   heartCount: number;
   title: string;
-  createdAt: number | Timestamp;
-  updatedAt: number | Timestamp;
+  createdAt: number | Timestamp | FieldValue;
+  updatedAt: number | Timestamp | FieldValue;
 }
 
 type PostFeedType = {

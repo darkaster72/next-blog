@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { createContext } from "react";
 
 export const UserContext = createContext<{
@@ -5,7 +6,7 @@ export const UserContext = createContext<{
   username: string | null;
 }>({ user: null, username: null });
 
-export interface User {
+export interface AppUser {
   photoURL: string;
   username: string;
   displayName: string;

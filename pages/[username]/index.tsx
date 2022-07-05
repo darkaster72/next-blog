@@ -10,7 +10,7 @@ import {
 import type { GetServerSideProps, NextPage } from "next";
 import PostFeed, { Post } from "../../components/PostFeed";
 import UserProfile from "../../components/UserProfile";
-import { User } from "../../lib/context";
+import { AppUser } from "../../lib/context";
 import { getUserWithUsername } from "../../lib/firebase";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -36,7 +36,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return { props: { user, posts } };
 };
 
-const UserPage: NextPage<{ user: User; posts: Post[] }> = ({ user, posts }) => {
+const UserPage: NextPage<{ user: AppUser; posts: Post[] }> = ({
+  user,
+  posts,
+}) => {
   return (
     <div className="container flex flex-col gap-4 px-6 py-4">
       {user && <UserProfile user={user} />}

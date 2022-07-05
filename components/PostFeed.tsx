@@ -9,8 +9,8 @@ export interface Post {
   published: boolean;
   heartCount: number;
   title: string;
-  createdAt: number | Timestamp | FieldValue;
-  updatedAt: number | Timestamp | FieldValue;
+  createdAt: number | Timestamp;
+  updatedAt: number | Timestamp;
 }
 
 type PostFeedType = {
@@ -40,7 +40,11 @@ function PostItem({ post, admin = false }: { post: Post; admin: boolean }) {
             <strong>By @{post.username}</strong>
           </a>
         </Link>
-        <Link href={`/${post.username}/${post.slug}`}>
+        <Link
+          href={
+            admin ? `/admin/${post.slug}` : `/${post.username}/${post.slug}`
+          }
+        >
           <a className="card-title">{post.title}</a>
         </Link>
         <footer className="card-actions">

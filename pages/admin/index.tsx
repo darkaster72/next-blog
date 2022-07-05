@@ -61,8 +61,8 @@ function CreateNewPost() {
       username: username as string,
       published: false,
       content: "#Hello World",
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
+      createdAt: serverTimestamp() as any,
+      updatedAt: serverTimestamp() as any,
       heartCount: 0,
     };
     await setDoc(postRef, data);

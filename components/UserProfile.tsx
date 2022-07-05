@@ -6,6 +6,8 @@ export default function UserProfile({ user }: { user: AppUser }) {
     <div className="flex flex-col gap-4 justify-center place-items-center">
       <Image
         src={user.photoURL ?? ""}
+        width={128}
+        height={128}
         alt="user Photo"
         className="avatar rounded-full h-32 w-32"
       />

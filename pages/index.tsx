@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   collectionGroup,
   getDocs,
@@ -17,7 +18,7 @@ import { jsonToPost } from "./[username]";
 
 const LIMIT = 10;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const postRef = collectionGroup(db, "posts");
   const postQuery = query(
     postRef,
@@ -28,14 +29,25 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const posts = (await getDocs(postQuery)).docs.map((doc) =>
     jsonToPost(doc.data())
   );
-  return { props: { posts } };
+
+  const { data: launches } = await axios(
+    "https://api.spacexdata.com/v5/launches/latest",
+    {}
+  );
+
+  return { props: { posts, launches } };
 };
 
-const Home: NextPage<{ posts: Post[] }> = (props) => {
+type HomeProps = {
+  posts: Post[];
+  launches: any;
+};
+
+const Home: NextPage<HomeProps> = (props) => {
   const [posts, setPosts] = useState(props.posts);
   const [loading, setLoading] = useState(false);
   const [postEnd, setPostEnd] = useState(posts.length == 0);
-
+  // console.log(props.launches);
   const getMorePosts = async () => {
     setLoading(true);
     const last = posts[posts.length - 1];
@@ -74,6 +86,7 @@ const Home: NextPage<{ posts: Post[] }> = (props) => {
         </button>
       )}
       <Loader show={loading} />
+      <h1>{props.launches.name}</h1>
     </div>
   );
 };
